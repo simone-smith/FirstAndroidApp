@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             startBusinessArticleDownload()
         }
         button2.setOnClickListener {
-            startNewsArticleDownload()
+            startSportsArticleDownload()
         }
     }
 
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun startNewsArticleDownload() {
+    fun startSportsArticleDownload() {
         button.visibility = View.GONE
         button2.visibility = View.GONE
         progressBar2.visibility = View.VISIBLE
