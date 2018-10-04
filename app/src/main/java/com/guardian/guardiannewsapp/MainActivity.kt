@@ -56,6 +56,9 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             startBusinessArticleDownload()
         }
+        button2.setOnClickListener {
+            startNewsArticleDownload()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -91,6 +94,33 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     val newsResponse = response.body()
                     progressBar.visibility = View.GONE
+                    rvNewsItems.visibility = View.VISIBLE
+                    newsResponse?.response?.results?.let { articleItems ->
+                        articleAdapter.addAll(articleItems)
+                    }
+                }
+            }
+
+        })
+    }
+
+    fun startNewsArticleDownload() {
+        button.visibility = View.GONE
+        button2.visibility = View.GONE
+        progressBar2.visibility = View.VISIBLE
+        tvErrorMessage.visibility = View.GONE
+        val newsCall = newsService.getNews("sport")
+        newsCall.enqueue(object : Callback<NewsResponse> {
+            override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                displayError()
+            }
+
+            override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
+                if (response.code() >= 400) {
+                    displayError()
+                } else {
+                    val newsResponse = response.body()
+                    progressBar2.visibility = View.GONE
                     rvNewsItems.visibility = View.VISIBLE
                     newsResponse?.response?.results?.let { articleItems ->
                         articleAdapter.addAll(articleItems)
