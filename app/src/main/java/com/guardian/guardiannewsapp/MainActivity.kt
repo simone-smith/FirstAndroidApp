@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
         button.setOnClickListener {
-            startNewsArticleDownload()
+            startBusinessArticleDownload()
         }
     }
 
@@ -74,8 +74,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun startNewsArticleDownload() {
+    fun startBusinessArticleDownload() {
         button.visibility = View.GONE
+        button2.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
         tvErrorMessage.visibility = View.GONE
         val newsCall = newsService.getNews("business")
