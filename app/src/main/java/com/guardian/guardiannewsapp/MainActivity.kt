@@ -53,11 +53,15 @@ class MainActivity : AppCompatActivity() {
             adapter = articleAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
+
         button.setOnClickListener {
-            startBusinessArticleDownload()
+            val content = button.text.toString()
+            startNewsArticleDownload(content)
         }
+
         button2.setOnClickListener {
-            startSportsArticleDownload()
+            val content = button2.text.toString()
+            startNewsArticleDownload(content)
         }
     }
 
@@ -77,12 +81,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun startBusinessArticleDownload() {
+    fun startNewsArticleDownload(content: String) {
         button.visibility = View.GONE
         button2.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
         tvErrorMessage.visibility = View.GONE
-        val newsCall = newsService.getNews("business")
+        val newsCall = newsService.getNews(content)
         newsCall.enqueue(object : Callback<NewsResponse> {
             override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                 displayError()
@@ -94,33 +98,6 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     val newsResponse = response.body()
                     progressBar.visibility = View.GONE
-                    rvNewsItems.visibility = View.VISIBLE
-                    newsResponse?.response?.results?.let { articleItems ->
-                        articleAdapter.addAll(articleItems)
-                    }
-                }
-            }
-
-        })
-    }
-
-    fun startSportsArticleDownload() {
-        button.visibility = View.GONE
-        button2.visibility = View.GONE
-        progressBar2.visibility = View.VISIBLE
-        tvErrorMessage.visibility = View.GONE
-        val newsCall = newsService.getNews("sport")
-        newsCall.enqueue(object : Callback<NewsResponse> {
-            override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-                displayError()
-            }
-
-            override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
-                if (response.code() >= 400) {
-                    displayError()
-                } else {
-                    val newsResponse = response.body()
-                    progressBar2.visibility = View.GONE
                     rvNewsItems.visibility = View.VISIBLE
                     newsResponse?.response?.results?.let { articleItems ->
                         articleAdapter.addAll(articleItems)
