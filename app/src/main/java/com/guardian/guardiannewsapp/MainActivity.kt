@@ -53,16 +53,11 @@ class MainActivity : AppCompatActivity() {
             adapter = articleAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
+    }
 
-        button.setOnClickListener {
-            val content = button.text.toString()
-            startNewsArticleDownload(content)
-        }
-
-        button2.setOnClickListener {
-            val content = button2.text.toString()
-            startNewsArticleDownload(content)
-        }
+    fun searchContent(view: View) {
+        val searchTerm = editText.text.toString()
+        startNewsArticleDownload(searchTerm)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -82,9 +77,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startNewsArticleDownload(content: String) {
-        button.visibility = View.GONE
-        button2.visibility = View.GONE
-        progressBar.visibility = View.VISIBLE
         tvErrorMessage.visibility = View.GONE
         val newsCall = newsService.getNews(content)
         newsCall.enqueue(object : Callback<NewsResponse> {
@@ -97,7 +89,6 @@ class MainActivity : AppCompatActivity() {
                     displayError()
                 } else {
                     val newsResponse = response.body()
-                    progressBar.visibility = View.GONE
                     rvNewsItems.visibility = View.VISIBLE
                     newsResponse?.response?.results?.let { articleItems ->
                         articleAdapter.addAll(articleItems)
@@ -109,8 +100,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun displayError() {
-        button.visibility = View.VISIBLE
-        progressBar.visibility = View.GONE
         rvNewsItems.visibility = View.GONE
         tvErrorMessage.visibility = View.VISIBLE
     }
