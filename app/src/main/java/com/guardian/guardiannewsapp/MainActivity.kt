@@ -58,8 +58,6 @@ class MainActivity : AppCompatActivity() {
     fun searchContent(view: View) {
         val searchTerm = editText.text.toString()
         startNewsArticleDownload(searchTerm)
-//        bDownloadNews.visibility = View.GONE
-//        editText.visibility = View.GONE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -94,6 +92,8 @@ class MainActivity : AppCompatActivity() {
                     noItemsError()
                 }
                 else {
+                    tvErrorMessage.visibility = View.GONE
+                    tvNoItemsErrorMessage.visibility = View.GONE
                     rvNewsItems.visibility = View.VISIBLE
                     newsResponse?.response?.results?.let { articleItems ->
                         articleAdapter.addAll(articleItems)
