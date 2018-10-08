@@ -2,6 +2,7 @@
     <string name="app_name">GuardianNewsApp</string>
     <string name="action_settings">Settings</string>
     <string name="error_text_message">Could not download articles. Try again.</string>
+    <string name="no_articles_error_message">Invalid search term. Try again.</string>
     <string name="download">Download</string>
     <string name="business">Business</string>
     <string name="sport">Sport</string>

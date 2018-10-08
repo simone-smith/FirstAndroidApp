@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity() {
     fun searchContent(view: View) {
         val searchTerm = editText.text.toString()
         startNewsArticleDownload(searchTerm)
+        bDownloadNews.visibility = View.GONE
+        editText.visibility = View.GONE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -77,7 +79,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startNewsArticleDownload(content: String) {
-        tvErrorMessage.visibility = View.GONE
         val newsCall = newsService.getNews(content)
         newsCall.enqueue(object : Callback<NewsResponse> {
             override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
@@ -85,10 +86,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
+                val newsResponse = response.body()
                 if (response.code() >= 400) {
                     displayError()
-                } else {
-                    val newsResponse = response.body()
+                }
+                else if (newsResponse != null && newsResponse.response.total < 1) {
+                    noItemsError()
+                }
+                else {
                     rvNewsItems.visibility = View.VISIBLE
                     newsResponse?.response?.results?.let { articleItems ->
                         articleAdapter.addAll(articleItems)
@@ -102,6 +107,11 @@ class MainActivity : AppCompatActivity() {
     fun displayError() {
         rvNewsItems.visibility = View.GONE
         tvErrorMessage.visibility = View.VISIBLE
+    }
+
+    fun noItemsError() {
+        rvNewsItems.visibility = View.GONE
+        tvNoItemsErrorMessage.visibility = View.VISIBLE
     }
 }
 
