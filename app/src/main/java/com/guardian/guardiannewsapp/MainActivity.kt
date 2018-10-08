@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
     fun searchContent(view: View) {
         val searchTerm = editText.text.toString()
         startNewsArticleDownload(searchTerm)
-        bDownloadNews.visibility = View.GONE
-        editText.visibility = View.GONE
+//        bDownloadNews.visibility = View.GONE
+//        editText.visibility = View.GONE
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
