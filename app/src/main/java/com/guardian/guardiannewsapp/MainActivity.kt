@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                     tvErrorMessage.visibility = View.GONE
                     tvNoItemsErrorMessage.visibility = View.GONE
                     rvNewsItems.visibility = View.VISIBLE
+                    editText.text.clear()
                     newsResponse?.response?.results?.let { articleItems ->
                         articleAdapter.addAll(articleItems)
                     }
