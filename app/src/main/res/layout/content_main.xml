@@ -8,36 +8,14 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvNewsItems"
+    <FrameLayout
+        android:id="@+id/flContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bDownloadNews"
-        tools:listitem="@layout/item_article" />
-
-    <TextView
-        android:id="@+id/tvErrorMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/error_text_message"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/bDownloadNews"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvNoItemsErrorMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/no_articles_error_message"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/bDownloadNews"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/bDownloadNews" />
 
     <EditText
         android:id="@+id/editText"
@@ -64,7 +42,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="searchContent"
         android:text="@string/view_headlines"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
