@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
@@ -12,13 +13,44 @@
         android:id="@+id/clParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="#abcdef">
+        android:layout_margin="8dp">
 
         <TextView
             android:id="@+id/tvArticleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            tools:text="Hello" />
+
+        <ImageView
+            android:id="@+id/ivArticleImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvArticleTitle" />
+
+        <TextView
+            android:id="@+id/tvPillarName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivArticleImage"
+            tools:text="Hello" />
+
+        <TextView
+            android:id="@+id/tvSectionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPillarName"
+            tools:text="Hello" />
+
+        <TextView
+            android:id="@+id/tvArticleLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/read_full_article"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSectionName"
             tools:text="Hello" />
 
     </android.support.constraint.ConstraintLayout>
