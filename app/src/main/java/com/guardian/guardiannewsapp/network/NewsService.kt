@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NewsService {
-    @GET("search")
-    fun getNews(@Query("section") content: String) : Call<NewsResponse>
+    @GET("search?show-fields=thumbnail")
+    fun getNews(@Query("section") content: String): Call<NewsResponse>
 }

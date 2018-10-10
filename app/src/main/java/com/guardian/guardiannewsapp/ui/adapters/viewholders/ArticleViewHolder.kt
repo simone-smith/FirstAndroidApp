@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import com.guardian.guardiannewsapp.R
 import com.guardian.guardiannewsapp.models.ArticleItem
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_article.view.*
 
 class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -14,7 +15,11 @@ class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(articleItem: ArticleItem) {
         itemView.tvArticleTitle.text = articleItem.webTitle
 
-        itemView.ivArticleImage.setImageResource(R.drawable.guardian)
+        if (articleItem.fields.thumbnail == null) {
+            itemView.ivArticleImage.setImageResource(R.drawable.guardian)
+        } else {
+            Picasso.get().load(articleItem.fields.thumbnail).into(itemView.ivArticleImage)
+        }
 
         itemView.tvPillarName.text = articleItem.pillarName
 

@@ -84,11 +84,9 @@ class HeadlinesFragment : Fragment() {
                 val newsResponse = response.body()
                 if (response.code() >= 400) {
                     displayError()
-                }
-                else if (newsResponse != null && newsResponse.response.total < 1) {
+                } else if (newsResponse != null && newsResponse.response.total < 1) {
                     noItemsError()
-                }
-                else {
+                } else {
                     tvErrorMessage.visibility = View.GONE
                     tvNoItemsErrorMessage.visibility = View.GONE
                     rvNewsItems.visibility = View.VISIBLE
@@ -115,7 +113,7 @@ class HeadlinesFragment : Fragment() {
 
         fun newInstance(searchTerm: String): HeadlinesFragment {
 
-            return HeadlinesFragment().apply{
+            return HeadlinesFragment().apply {
 
                 val bundle = Bundle()
                 bundle.putString("SEARCHTERM", searchTerm)
