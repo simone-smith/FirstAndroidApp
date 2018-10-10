@@ -9,4 +9,5 @@
     <string name="category">Category</string>
     <string name="view_headlines">View headlines</string>
     <string name="read_full_article">Read full article</string>
+    <string name="thumbnail_image">thumbnail_image</string>
 </resources>

@@ -19,17 +19,34 @@
             android:id="@+id/tvArticleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="@color/design_default_color_primary_dark"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="Hello" />
+
+        <TextView
+            android:id="@+id/tvPillarName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/design_default_color_primary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvArticleTitle"
             tools:text="Hello" />
 
         <ImageView
             android:id="@+id/ivArticleImage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/thumbnail_image"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvArticleTitle" />
+            app:layout_constraintTop_toBottomOf="@id/tvPillarName" />
 
         <TextView
-            android:id="@+id/tvPillarName"
+            android:id="@+id/tvTrailText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,20 +54,13 @@
             tools:text="Hello" />
 
         <TextView
-            android:id="@+id/tvSectionName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPillarName"
-            tools:text="Hello" />
-
-        <TextView
             android:id="@+id/tvArticleLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/read_full_article"
+            android:textColor="@color/colorAccent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSectionName"
+            app:layout_constraintTop_toBottomOf="@id/tvTrailText"
             tools:text="Hello" />
 
     </android.support.constraint.ConstraintLayout>
