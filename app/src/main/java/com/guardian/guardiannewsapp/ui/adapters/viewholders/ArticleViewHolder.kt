@@ -30,9 +30,7 @@ class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             "Sport" -> itemView.tvPillarName.setTextColor(Color.parseColor("#0084c6"))
             "Arts" -> itemView.tvPillarName.setTextColor(Color.parseColor("#a1845c"))
             "Lifestyle" -> itemView.tvPillarName.setTextColor(Color.parseColor("#bb3b80"))
-            else -> {
-                itemView.tvPillarName.setTextColor(Color.BLACK)
-            }
+            else -> itemView.tvPillarName.setTextColor(Color.BLACK)
         }
 
         itemView.tvTrailText.text = articleItem.fields.trailText

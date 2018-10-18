@@ -67,6 +67,9 @@ class HeadlinesFragment : Fragment() {
         }
         val localSearchTerm = searchTerm
         if (localSearchTerm != null) {
+            bRefresh.setOnClickListener {
+                startNewsArticleDownload(localSearchTerm)
+            }
             startNewsArticleDownload(localSearchTerm)
         } else {
             displayError()

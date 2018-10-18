@@ -31,7 +31,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bDownloadNews" />
+        app:layout_constraintTop_toBottomOf="@id/bRefresh" />
 
     <TextView
         android:id="@+id/tvNoItemsErrorMessage"
@@ -41,6 +41,6 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bDownloadNews" />
+        app:layout_constraintTop_toBottomOf="@id/bRefresh" />
 
 </android.support.constraint.ConstraintLayout>
