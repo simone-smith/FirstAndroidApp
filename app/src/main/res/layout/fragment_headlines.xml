@@ -13,7 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bRefresh"
+        app:layout_constraintTop_toBottomOf="@id/bBack"
         tools:listitem="@layout/item_article" />
 
     <Button
@@ -23,6 +23,13 @@
         android:text="Refresh"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/bBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        app:layout_constraintTop_toBottomOf="@id/bRefresh" />
+
     <TextView
         android:id="@+id/tvErrorMessage"
         android:layout_width="wrap_content"
@@ -31,7 +38,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bRefresh" />
+        app:layout_constraintTop_toBottomOf="@id/bBack" />
 
     <TextView
         android:id="@+id/tvNoItemsErrorMessage"
@@ -41,6 +48,6 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bRefresh" />
+        app:layout_constraintTop_toBottomOf="@id/bBack" />
 
 </android.support.constraint.ConstraintLayout>

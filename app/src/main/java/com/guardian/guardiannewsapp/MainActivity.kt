@@ -6,7 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+        HeadlinesFragment.OnBackSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,10 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onBackButtonPressed() {
+        onBackPressed()
     }
 
     override fun onBackPressed() {

@@ -1,5 +1,6 @@
 package com.guardian.guardiannewsapp
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -49,6 +50,22 @@ class HeadlinesFragment : Fragment() {
         retrofit.create(NewsService::class.java)
     }
 
+    private var callback: OnBackSelectedListener? = null
+
+    interface OnBackSelectedListener {
+        fun onBackButtonPressed()
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        callback = context as OnBackSelectedListener
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -73,6 +90,10 @@ class HeadlinesFragment : Fragment() {
             startNewsArticleDownload(localSearchTerm)
         } else {
             displayError()
+        }
+
+        bBack.setOnClickListener {
+            callback?.onBackButtonPressed()
         }
     }
 
