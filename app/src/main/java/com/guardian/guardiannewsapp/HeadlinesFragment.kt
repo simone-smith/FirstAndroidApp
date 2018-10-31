@@ -69,7 +69,7 @@ class HeadlinesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        searchTerm = arguments?.getString("SEARCHTERM")
+        searchTerm = arguments?.getString("searchTerm")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -95,6 +95,7 @@ class HeadlinesFragment : Fragment() {
         bBack.setOnClickListener {
             callback?.onBackButtonPressed()
         }
+
     }
 
     fun startNewsArticleDownload(content: String) {
@@ -132,20 +133,4 @@ class HeadlinesFragment : Fragment() {
         rvNewsItems.visibility = View.GONE
         tvNoItemsErrorMessage.visibility = View.VISIBLE
     }
-
-    companion object {
-
-        fun newInstance(searchTerm: String): HeadlinesFragment {
-
-            return HeadlinesFragment().apply {
-
-                val bundle = Bundle()
-                bundle.putString("SEARCHTERM", searchTerm)
-                arguments = bundle
-            }
-        }
-
-    }
-
-
 }

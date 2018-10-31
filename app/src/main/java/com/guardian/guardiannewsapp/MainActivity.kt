@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(),
         HeadlinesFragment.OnBackSelectedListener {
+
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,13 +20,23 @@ class MainActivity : AppCompatActivity(),
         bDownloadNews.setOnClickListener {
             searchContent()
         }
+
+        val host: NavHostFragment = supportFragmentManager
+                .findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment? ?: return
+
+        navController = host.navController
     }
 
     fun searchContent() {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.flContent, HeadlinesFragment.newInstance(editText.text.toString()), "HEADLINES")
-                .addToBackStack("HEADLINES")
-        fragmentTransaction.commit()
+        if (navController.currentDestination?.id == R.id.headlinesFragment) {
+            navController.navigate(R.id.searchAgain, Bundle().apply {
+                putString("searchTerm", editText.text.toString())
+            })
+        } else {
+            navController.navigate(R.id.search, Bundle().apply {
+                putString("searchTerm", editText.text.toString())
+            })
+        }
         editText.text.clear()
     }
 
@@ -43,15 +57,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onBackButtonPressed() {
-        onBackPressed()
-    }
-
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 1) {
-            supportFragmentManager.popBackStack()
-        } else {
-            super.onBackPressed()
-        }
+        navController.navigateUp()
     }
 }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        android:id="@+id/headlinesFragment"
+        android:name="com.guardian.guardiannewsapp.HeadlinesFragment"
+        android:label="HeadlinesFragment"
+        tools:layout="@layout/fragment_headlines">
+        <argument android:name="searchTerm" />
+        <action
+            android:id="@+id/searchAgain"
+            app:destination="@id/headlinesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.guardian.guardiannewsapp.FirstFragment"
+        android:label="FirstFragment"
+        tools:layout="@layout/first_fragment">
+        <action
+            android:id="@+id/search"
+            app:destination="@id/headlinesFragment" />
+    </fragment>
+</navigation>
