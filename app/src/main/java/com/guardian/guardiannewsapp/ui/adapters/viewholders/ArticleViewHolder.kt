@@ -40,10 +40,6 @@ class ArticleViewHolder(itemView: View, private val onOpenWebViewListener: OnOpe
         itemView.tvArticleLink.setOnClickListener {
             Log.d("ArticleViewHolder", articleItem.webUrl)
             onOpenWebViewListener.openWebViewListener(articleItem.webUrl)
-
-//            val intent = Intent(Intent.ACTION_VIEW)
-//            intent.setData(Uri.parse(articleItem.webUrl))
-//            itemView.context.startActivity(intent)
         }
     }
 }

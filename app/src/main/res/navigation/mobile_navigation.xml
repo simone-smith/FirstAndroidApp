@@ -14,6 +14,9 @@
         <action
             android:id="@+id/searchAgain"
             app:destination="@id/headlinesFragment" />
+        <action
+            android:id="@+id/openUrl"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/firstFragment"
@@ -23,5 +26,11 @@
         <action
             android:id="@+id/search"
             app:destination="@id/headlinesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.guardian.guardiannewsapp.WebViewFragment"
+        android:label="WebViewFragment">
+        <argument android:name="url" />
     </fragment>
 </navigation>

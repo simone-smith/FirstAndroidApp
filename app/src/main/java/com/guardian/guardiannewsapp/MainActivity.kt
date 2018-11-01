@@ -65,6 +65,9 @@ class MainActivity : AppCompatActivity(),
 
     override fun openWebViewListener(url: String) {
         Log.d("mainactivity", url)
+        navController.navigate(R.id.openUrl, Bundle().apply {
+            putString("url", url)
+        })
     }
 }
 

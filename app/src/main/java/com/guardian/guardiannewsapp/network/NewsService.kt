@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface NewsService {
     @GET("search?show-fields=thumbnail,trailText")
-    fun getNews(@Query("section") content: String): Call<NewsResponse>
+    fun getNews(@Query("q") content: String): Call<NewsResponse>
 }
