@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.guardian.guardiannewsapp.models.NewsResponse
 import com.guardian.guardiannewsapp.network.NewsService
 import com.guardian.guardiannewsapp.ui.adapters.ArticleAdapter
+import com.guardian.guardiannewsapp.ui.adapters.viewholders.ArticleViewHolder
 import kotlinx.android.synthetic.main.fragment_headlines.*
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -25,7 +26,7 @@ class HeadlinesFragment : Fragment() {
 
     private var searchTerm: String? = null
 
-    private val articleAdapter = ArticleAdapter(arrayListOf())
+    private lateinit var articleAdapter: ArticleAdapter
 
     private val okHttpClient: OkHttpClient by lazy {
         OkHttpClient.Builder()
@@ -52,6 +53,8 @@ class HeadlinesFragment : Fragment() {
 
     private var callback: OnBackSelectedListener? = null
 
+    private var onOpenWebViewClickListener: ArticleViewHolder.OnOpenWebViewListener? = null
+
     interface OnBackSelectedListener {
         fun onBackButtonPressed()
     }
@@ -59,11 +62,7 @@ class HeadlinesFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         callback = context as OnBackSelectedListener
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        callback = null
+        onOpenWebViewClickListener = context as ArticleViewHolder.OnOpenWebViewListener
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +77,7 @@ class HeadlinesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        articleAdapter = ArticleAdapter(arrayListOf(), onOpenWebViewClickListener!!)
         with(rvNewsItems) {
             adapter = articleAdapter
             layoutManager = LinearLayoutManager(requireActivity())
@@ -96,6 +96,12 @@ class HeadlinesFragment : Fragment() {
             callback?.onBackButtonPressed()
         }
 
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback = null
+        onOpenWebViewClickListener = null
     }
 
     fun startNewsArticleDownload(content: String) {

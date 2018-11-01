@@ -2,14 +2,17 @@ package com.guardian.guardiannewsapp
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.guardian.guardiannewsapp.ui.adapters.viewholders.ArticleViewHolder
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(),
-        HeadlinesFragment.OnBackSelectedListener {
+        HeadlinesFragment.OnBackSelectedListener,
+        ArticleViewHolder.OnOpenWebViewListener {
 
     lateinit var navController: NavController
 
@@ -58,6 +61,10 @@ class MainActivity : AppCompatActivity(),
 
     override fun onBackButtonPressed() {
         navController.navigateUp()
+    }
+
+    override fun openWebViewListener(url: String) {
+        Log.d("mainactivity", url)
     }
 }
 
