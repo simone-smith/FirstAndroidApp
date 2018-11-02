@@ -32,13 +32,14 @@ class ArticleViewHolder(itemView: View,
 
         itemView.tvPillarName.text = articleItem.pillarName
 
-        when (articleItem.pillarName) {
-            "News" -> itemView.tvPillarName.setTextColor(Color.parseColor("#c70000"))
-            "Opinion" -> itemView.tvPillarName.setTextColor(Color.parseColor("#e05e00"))
-            "Sport" -> itemView.tvPillarName.setTextColor(Color.parseColor("#0084c6"))
-            "Arts" -> itemView.tvPillarName.setTextColor(Color.parseColor("#a1845c"))
-            "Lifestyle" -> itemView.tvPillarName.setTextColor(Color.parseColor("#bb3b80"))
-            else -> itemView.tvPillarName.setTextColor(Color.BLACK)
+        if (articleItem.pillarName != null) {
+            when (articleItem.pillarName) {
+                "News" -> itemView.tvPillarName.setTextColor(Color.parseColor("#c70000"))
+                "Opinion" -> itemView.tvPillarName.setTextColor(Color.parseColor("#e05e00"))
+                "Sport" -> itemView.tvPillarName.setTextColor(Color.parseColor("#0084c6"))
+                "Arts" -> itemView.tvPillarName.setTextColor(Color.parseColor("#a1845c"))
+                "Lifestyle" -> itemView.tvPillarName.setTextColor(Color.parseColor("#bb3b80"))
+            }
         }
 
         itemView.tvTrailText.text = articleItem.fields.trailText
