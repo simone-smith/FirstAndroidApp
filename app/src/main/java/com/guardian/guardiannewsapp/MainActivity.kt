@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(),
         HeadlinesFragment.OnBackSelectedListener,
-        ArticleViewHolder.OnOpenWebViewListener {
+        ArticleViewHolder.OnOpenWebViewListener,
+        ArticleViewHolder.OnClickSectionListener {
 
     lateinit var navController: NavController
 
@@ -68,6 +69,13 @@ class MainActivity : AppCompatActivity(),
         navController.navigate(R.id.openUrl, Bundle().apply {
             putString("url", url)
         })
+    }
+
+    override fun startSectionSearch(section: String) {
+        navController.navigate(R.id.searchTerm, Bundle().apply {
+            putString("searchTerm", editText.text.toString())
+        })
+        editText.text.clear()
     }
 }
 

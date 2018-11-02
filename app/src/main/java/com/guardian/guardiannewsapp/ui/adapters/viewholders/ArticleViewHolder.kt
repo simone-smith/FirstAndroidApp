@@ -9,10 +9,16 @@ import com.guardian.guardiannewsapp.models.ArticleItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_article.view.*
 
-class ArticleViewHolder(itemView: View, private val onOpenWebViewListener: OnOpenWebViewListener) : RecyclerView.ViewHolder(itemView) {
+class ArticleViewHolder(itemView: View,
+                        private val onOpenWebViewListener: OnOpenWebViewListener,
+                        private val onClickSectionListener: OnClickSectionListener) : RecyclerView.ViewHolder(itemView) {
 
     interface OnOpenWebViewListener {
         fun openWebViewListener(url: String)
+    }
+
+    interface OnClickSectionListener {
+        fun startSectionSearch(section: String)
     }
 
     fun bind(articleItem: ArticleItem) {
@@ -43,5 +49,9 @@ class ArticleViewHolder(itemView: View, private val onOpenWebViewListener: OnOpe
         }
 
         itemView.tvSectionName.text = articleItem.sectionName
+
+        itemView.tvSectionName.setOnClickListener {
+            onClickSectionListener.startSectionSearch(articleItem.sectionName)
+        }
     }
 }

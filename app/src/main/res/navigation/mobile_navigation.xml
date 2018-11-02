@@ -17,6 +17,9 @@
         <action
             android:id="@+id/openUrl"
             app:destination="@id/webViewFragment" />
+        <action
+            android:id="@+id/searchTerm"
+            app:destination="@id/headlinesFragment" />
     </fragment>
     <fragment
         android:id="@+id/firstFragment"

@@ -55,6 +55,8 @@ class HeadlinesFragment : Fragment() {
 
     private var onOpenWebViewClickListener: ArticleViewHolder.OnOpenWebViewListener? = null
 
+    private var onClickSectionListener: ArticleViewHolder.OnClickSectionListener? = null
+
     interface OnBackSelectedListener {
         fun onBackButtonPressed()
     }
@@ -63,6 +65,7 @@ class HeadlinesFragment : Fragment() {
         super.onAttach(context)
         callback = context as OnBackSelectedListener
         onOpenWebViewClickListener = context as ArticleViewHolder.OnOpenWebViewListener
+        onClickSectionListener = context as ArticleViewHolder.OnClickSectionListener
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,7 +80,7 @@ class HeadlinesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        articleAdapter = ArticleAdapter(arrayListOf(), onOpenWebViewClickListener!!)
+        articleAdapter = ArticleAdapter(arrayListOf(), onOpenWebViewClickListener!!, onClickSectionListener!!)
         with(rvNewsItems) {
             adapter = articleAdapter
             layoutManager = LinearLayoutManager(requireActivity())
