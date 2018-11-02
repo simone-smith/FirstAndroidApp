@@ -41,5 +41,7 @@ class ArticleViewHolder(itemView: View, private val onOpenWebViewListener: OnOpe
             Log.d("ArticleViewHolder", articleItem.webUrl)
             onOpenWebViewListener.openWebViewListener(articleItem.webUrl)
         }
+
+        itemView.tvSectionName.text = articleItem.sectionName
     }
 }

@@ -63,6 +63,14 @@
             app:layout_constraintTop_toBottomOf="@id/tvTrailText"
             tools:text="Hello" />
 
+        <TextView
+            android:id="@+id/tvSectionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTrailText" />
+
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
 
