@@ -52,7 +52,7 @@ class ArticleViewHolder(itemView: View,
         itemView.tvSectionName.text = articleItem.sectionName
 
         itemView.tvSectionName.setOnClickListener {
-            onClickSectionListener.startSectionSearch(articleItem.sectionName)
+            onClickSectionListener.startSectionSearch(articleItem.sectionId)
         }
     }
 }

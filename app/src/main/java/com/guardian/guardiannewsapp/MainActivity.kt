@@ -71,9 +71,9 @@ class MainActivity : AppCompatActivity(),
         })
     }
 
-    override fun startSectionSearch(section: String) {
-        navController.navigate(R.id.searchTerm, Bundle().apply {
-            putString("searchTerm", section)
+    override fun startSectionSearch(searchTerm: String) {
+        navController.navigate(R.id.sectionSearch, Bundle().apply {
+            putString("searchTerm", searchTerm)
         })
         editText.text.clear()
     }

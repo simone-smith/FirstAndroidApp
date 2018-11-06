@@ -6,7 +6,8 @@ data class ArticleItem(
         val webUrl: String,
         val pillarName: String,
         val fields: Fields,
-        val sectionName: String
+        val sectionName: String,
+        val sectionId: String
 )
 
 data class Fields(val thumbnail: String?, val trailText: String?)

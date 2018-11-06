@@ -11,6 +11,7 @@
         android:label="HeadlinesFragment"
         tools:layout="@layout/fragment_headlines">
         <argument android:name="searchTerm" />
+        <argument android:name="sectionSearch" />
         <action
             android:id="@+id/searchAgain"
             app:destination="@id/headlinesFragment" />
@@ -18,7 +19,7 @@
             android:id="@+id/openUrl"
             app:destination="@id/webViewFragment" />
         <action
-            android:id="@+id/searchTerm"
+            android:id="@+id/sectionSearch"
             app:destination="@id/headlinesFragment" />
     </fragment>
     <fragment

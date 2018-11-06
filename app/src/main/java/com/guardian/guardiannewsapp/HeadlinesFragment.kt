@@ -26,6 +26,8 @@ class HeadlinesFragment : Fragment() {
 
     private var searchTerm: String? = null
 
+    private var sectionSearch: String? = null
+
     private lateinit var articleAdapter: ArticleAdapter
 
     private val okHttpClient: OkHttpClient by lazy {
@@ -72,6 +74,7 @@ class HeadlinesFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         searchTerm = arguments?.getString("searchTerm")
+        sectionSearch = arguments?.getString("sectionSearch")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -86,11 +89,22 @@ class HeadlinesFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireActivity())
         }
         val localSearchTerm = searchTerm
+        val localSectionSearch = sectionSearch
+
         if (localSearchTerm != null) {
             bRefresh.setOnClickListener {
                 startNewsArticleDownload(localSearchTerm)
             }
             startNewsArticleDownload(localSearchTerm)
+        } else {
+            displayError()
+        }
+
+        if (localSectionSearch != null) {
+            bRefresh.setOnClickListener {
+                startSectionDownload(localSectionSearch)
+            }
+            startSectionDownload(localSectionSearch)
         } else {
             displayError()
         }
@@ -109,6 +123,32 @@ class HeadlinesFragment : Fragment() {
 
     fun startNewsArticleDownload(content: String) {
         val newsCall = newsService.getNews(content)
+        newsCall.enqueue(object : Callback<NewsResponse> {
+            override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                displayError()
+            }
+
+            override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
+                val newsResponse = response.body()
+                if (response.code() >= 400) {
+                    displayError()
+                } else if (newsResponse != null && newsResponse.response.total < 1) {
+                    noItemsError()
+                } else {
+                    tvErrorMessage.visibility = View.GONE
+                    tvNoItemsErrorMessage.visibility = View.GONE
+                    rvNewsItems.visibility = View.VISIBLE
+                    newsResponse?.response?.results?.let { articleItems ->
+                        articleAdapter.addAll(articleItems)
+                    }
+                }
+            }
+
+        })
+    }
+
+    fun startSectionDownload(content: String) {
+        val newsCall = newsService.getSection(content)
         newsCall.enqueue(object : Callback<NewsResponse> {
             override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                 displayError()
